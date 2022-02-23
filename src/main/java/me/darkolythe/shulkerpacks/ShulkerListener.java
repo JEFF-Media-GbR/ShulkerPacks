@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ShulkerListener implements Listener {
 
-    public ShulkerPacks main;
+    public static ShulkerPacks main;
     public ShulkerListener(ShulkerPacks plugin) {
         this.main = plugin; //set it equal to an instance of main
     }
@@ -251,7 +251,7 @@ public class ShulkerListener implements Listener {
     /*
     Saves the shulker data in the itemmeta
      */
-    public boolean saveShulker(Player player, String title) {
+    public static boolean saveShulker(Player player, String title) {
         try {
             if (ShulkerPacks.openshulkers.containsKey(player)) {
                 if (title.equals(main.defaultname) || (ShulkerPacks.openshulkers.get(player).hasItemMeta() &&
@@ -278,7 +278,7 @@ public class ShulkerListener implements Listener {
         return false;
     }
 
-    private void updateAllInventories(ItemStack item) {
+    private static void updateAllInventories(ItemStack item) {
         for (Player p : ShulkerPacks.openshulkers.keySet()) {
             if (ShulkerPacks.openshulkers.get(p).equals(item)) {
                 BlockStateMeta meta = (BlockStateMeta) item.getItemMeta();

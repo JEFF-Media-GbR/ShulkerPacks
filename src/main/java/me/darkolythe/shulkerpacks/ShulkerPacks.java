@@ -1,6 +1,7 @@
 package me.darkolythe.shulkerpacks;
 
 import org.bstats.bukkit.Metrics;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -52,6 +53,13 @@ public final class ShulkerPacks extends JavaPlugin {
         shulkerlistener.checkIfValid();
 
         getLogger().log(Level.INFO, (prefix + ChatColor.GREEN + "ShulkerPacks has been enabled!"));
+
+        Bukkit.getScheduler().runTaskLater(this, () -> {
+            if(Bukkit.getPluginManager().getPlugin("ChestSort") != null) {
+                Bukkit.getPluginManager().registerEvents(new ChestSortListener(), this);
+            }
+        },1L); // Yeah, waiting 1 tick is a dirty hack. But since ChestSort softdepends on ShulkerPacks, I don't see another way. And tbh noone will use any shulkers within the first tick
+
     }
 
     /*
